@@ -1,25 +1,14 @@
-from ollama import chat
+# from fastapi import FastAPI
 
-response = chat(
-    model="qwen2.5vl:3b",
-    messages=[
-        {
-            "role":"user",
-            "content":"""
-Extrae esta factura y responde únicamente en JSON con:
+# app = FastAPI()
 
-- numero_factura
-- fecha
-- empresa
-- nif
-- nombre del producto con su precio
-- subtotal
-- iva
-- total
-            """,
-            "images":["factura_1.jpeg"]
-        }
-    ]
-)
+# @app.get("/")
+# def inicio():
+#     return {"mensaje": "Hola Mundo, de nuevo"}
 
-print(response.message.content)
+from fastapi import FastAPI
+from routes import router
+
+app = FastAPI()
+
+app.include_router(router)
