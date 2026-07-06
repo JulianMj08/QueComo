@@ -1,17 +1,49 @@
 import sqlite3
+import json
 
-conexion = sqlite3.connect("facturas.db") #Crea la conexion
+## CREACION Y CONEXION FACTURA EN LA BASE DE DATOS
 
-cursor = conexion.cursor() #Ejecuta la conexion
+DB_NAME = "facturas.db"
+
+def obtener_conexion():
+    return sqlite3.connect(DB_NAME) #Crea la conexion
+
 
 def crear_base_datos():
+
+    conexion = obtener_conexion()
+
+    cursor = conexion.cursor() #Ejecuta la conexion
+
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS facturas(
+    CREATE TABLE IF NOT EXISTS facturas(
 
-id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-data TEXT
+    data TEXT
 
 )
     """)
     conexion.commit()   
+
+    conexion.close()
+
+## GUARDAR FACTURA EN LA BASE DE DATOS
+
+def guardar_factura(data):
+
+    conexion = obtener_conexion()
+
+    cursor = conexion.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO facturas(data)
+        VALUES(?)
+        """,
+        (json.dumps(data),)
+    )
+
+    conexion.commit()
+
+    conexion.close()
