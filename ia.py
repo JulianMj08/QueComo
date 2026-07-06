@@ -1,4 +1,5 @@
 from ollama import chat
+import json
 
 from prompts import PROMPT_EXTRAER_FACTURA
 
@@ -6,6 +7,7 @@ def extraer_factura(ruta_imagen: str):
 
     response = chat(
         model="qwen2.5vl:3b",
+        format="json",
         messages=[
             {
                 "role": "user",
@@ -15,4 +17,5 @@ def extraer_factura(ruta_imagen: str):
         ]
     )
 
-    return response.message.content
+    return json.loads(response.message.content)
+    # return response.message.content
