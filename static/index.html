@@ -2,15 +2,49 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>QueComo</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
 </head>
 
 <body>
 
-    <h1>🧾 QueComo</h1>
+    <div class="container">
 
-    <p>Tu despensa inteligente con IA</p>
+        <div class="card">
+
+            <h1>🧾 QueComo</h1>
+
+            <p>Tu despensa inteligente con IA</p>
+
+            <hr>
+
+            <h3>📷 Seleccionar factura</h3>
+
+            <input
+                type="file"
+                id="factura"
+                accept="image/*">
+
+         <button id="btnAnalizar">
+            Analizar factura
+        </button>
+
+        <p id="estado"></p>       
+
+        </div>
+
+        
+
+    </div>
+
+    <script src="/static/app.js"></script>
 
 </body>
 
