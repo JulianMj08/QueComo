@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File
 from pathlib import Path
 import shutil
+from fastapi.responses import FileResponse
 
 from config import UPLOADS_DIR
 from ia import extraer_factura
@@ -11,9 +12,8 @@ router = APIRouter()
 
 @router.get("/")    
 def inicio():
-    return {
-        "mensaje": "API de reconocimiento de facturas funcionando"
-    }
+    return FileResponse("static/index.html") #En lugar de devolver un JSON, devuelve este archivo
+    
 
 @router.post("/facturas")
 async def recibir_factura(imagen: UploadFile = File(...)):
