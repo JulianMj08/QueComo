@@ -47,3 +47,21 @@ def guardar_factura(data):
     conexion.commit()
 
     conexion.close()
+
+## OBTENER FACTURA DE LA BASE DE DATOS
+def obtener_facturas():
+
+    conexion = obtener_conexion()
+
+    cursor = conexion.cursor()
+
+    cursor.execute("""
+        SELECT data
+        FROM facturas
+    """)
+
+    filas = cursor.fetchall()
+
+    conexion.close()
+
+    return filas    

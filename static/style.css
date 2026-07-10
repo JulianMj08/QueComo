@@ -110,12 +110,46 @@ button:hover {
 
 #productos{
 
-    padding-left:20px;
+    margin-top:20px;
 
 }
 
-#productos li{
+.producto{
 
-    margin-bottom:8px;
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    background:#f8f8f8;
+
+    border-radius:10px;
+
+}
+
+.producto-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.producto-nombre{
+
+    font-weight:bold;
+
+}
+
+.producto-precio{
+
+    color:#2563eb;
+
+    font-weight:bold;
 
 }

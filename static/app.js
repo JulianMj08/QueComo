@@ -1,3 +1,15 @@
+const btnDespensa = document.getElementById("btnDespensa");
+
+btnDespensa.addEventListener("click", async () => {
+
+    const respuesta = await fetch("/despensa");
+
+    const datos = await respuesta.json();
+
+    console.log(datos);
+
+});
+
 const inputFactura = document.getElementById("factura");
 const boton = document.getElementById("btnAnalizar");
 const estado = document.getElementById("estado");
@@ -56,11 +68,31 @@ boton.addEventListener("click", async () => {
         // Recorremos el array de todos los productos para luego mostrarlos
         factura.productos.forEach(producto => {
 
-        const li = document.createElement("li");
+        const tarjeta = document.createElement("div");
 
-        li.textContent = `${producto.nombre} - ${producto.precio} €`;
+        tarjeta.className = "producto";
 
-        productos.appendChild(li);
+        tarjeta.innerHTML = `
+
+        <div class="producto-info">
+
+            <div class="producto-nombre">
+
+                🛒 ${producto.nombre}
+
+            </div>
+
+        </div>
+
+        <div class="producto-precio">
+
+            ${producto.precio}
+
+        </div>
+
+    `;
+
+    productos.appendChild(tarjeta);
 
 });
         // Mostramos el contenido
