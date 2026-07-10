@@ -96,3 +96,26 @@ button:hover {
     color: green;
 
 }
+
+/* lista de productos en pantalla */
+#resultado{
+
+    margin-top:30px;
+
+    border-top:1px solid #ddd;
+
+    padding-top:20px;
+
+}
+
+#productos{
+
+    padding-left:20px;
+
+}
+
+#productos li{
+
+    margin-bottom:8px;
+
+}

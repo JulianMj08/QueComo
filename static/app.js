@@ -30,7 +30,41 @@ boton.addEventListener("click", async () => {
 
         });
 
-        const datos = await respuesta.json();
+        const datos = await respuesta.json(); // Creamos la salida en formato json
+
+        
+        // Creamos las constantes de cada dato que se mostrara por pantalla
+        const resultado = document.getElementById("resultado");
+
+        const empresa = document.getElementById("empresa");
+
+        const fecha = document.getElementById("fecha");
+
+        const total = document.getElementById("total");
+
+        const productos = document.getElementById("productos");
+
+        const factura = datos.resultado; // creamos una constante la cual es la contenedora de la respuesta
+
+        // Agregamos los datos al DOM
+        empresa.textContent = factura.empresa;
+        fecha.textContent = factura.fecha;
+        total.textContent = factura.total;
+
+        productos.innerHTML = "";
+        
+        // Recorremos el array de todos los productos para luego mostrarlos
+        factura.productos.forEach(producto => {
+
+        const li = document.createElement("li");
+
+        li.textContent = `${producto.nombre} - ${producto.precio} €`;
+
+        productos.appendChild(li);
+
+});
+        // Mostramos el contenido
+        resultado.style.display = "block";
 
         console.log(datos);
 

@@ -5,7 +5,7 @@ Extrae esta factura y responde únicamente en JSON con:
 - fecha
 - empresa
 - nif
-- nombre del producto con su precio
+- productos
 - subtotal
 - iva
 - total
