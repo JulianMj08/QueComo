@@ -1,3 +1,6 @@
+const despensa = document.getElementById("despensa");
+
+
 const btnDespensa = document.getElementById("btnDespensa");
 
 btnDespensa.addEventListener("click", async () => {
@@ -6,7 +9,34 @@ btnDespensa.addEventListener("click", async () => {
 
     const datos = await respuesta.json();
 
-    console.log(datos);
+    console.log(datos)
+    despensa.innerHTML = "";
+
+    datos.productos.forEach(producto => {
+
+        const tarjeta = document.createElement("div");
+
+        tarjeta.className = "producto-despensa";
+
+        tarjeta.innerHTML = `
+
+            <span>
+
+                🛒 ${producto.nombre}
+
+            </span>
+
+            <strong>
+
+                ${producto.precio}
+
+            </strong>
+
+        `;
+
+        despensa.appendChild(tarjeta);
+
+    });
 
 });
 

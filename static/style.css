@@ -153,3 +153,27 @@ button:hover {
     font-weight:bold;
 
 }
+
+#despensa{
+
+    margin-top:20px;
+
+}
+
+.producto-despensa{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#eef7ee;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    margin-bottom:10px;
+
+}
