@@ -64,4 +64,23 @@ def get_ticket():
 
     conexion.close()
 
-    return rows    
+    return rows
+
+## CREAR USUARIO EN LA TABLA USERS
+def create_user(name, email, password):
+
+    conexion = get_conexion()
+
+    cursor = conexion.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO users(name, email, password)
+        VALUES (?, ?, ?)
+        """,
+        (name, email, password)
+    )
+
+    conexion.commit()
+
+    conexion.close()        

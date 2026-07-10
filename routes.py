@@ -8,6 +8,8 @@ from config import UPLOADS_DIR
 from ia import extract_ticket
 from database import save_ticket
 from database import get_ticket
+from schemas import RegisterUser
+from database import create_user
 
 
 router = APIRouter()
@@ -60,4 +62,18 @@ def get_pantry():
 
         "productos": productos
 
-    }    
+    }   
+    
+#ENDPONT PARA CREAR NUEVO USUARIA.  
+@router.post("/registro")
+def register(user: RegisterUser):
+
+    create_user(
+        user.name,
+        user.email,
+        user.password
+    )
+
+    return {
+        "mensaje": "Usuario creado correctamente"
+    }
