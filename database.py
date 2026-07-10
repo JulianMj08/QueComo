@@ -3,20 +3,20 @@ import json
 
 ## CREACION Y CONEXION FACTURA EN LA BASE DE DATOS
 
-DB_NAME = "facturas.db"
+DB_NAME = "QComo.db"
 
-def obtener_conexion():
+def get_conexion():
     return sqlite3.connect(DB_NAME) #Crea la conexion
 
 
-def crear_base_datos():
+def create_db():
 
-    conexion = obtener_conexion()
+    conexion = get_conexion()
 
     cursor = conexion.cursor() #Ejecuta la conexion
 
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS facturas(
+    CREATE TABLE IF NOT EXISTS tickets(
 
     id INTEGER PRIMARY KEY AUTOINCREMENT,
 
@@ -30,15 +30,15 @@ def crear_base_datos():
 
 ## GUARDAR FACTURA EN LA BASE DE DATOS
 
-def guardar_factura(data):
+def save_ticket(data):
 
-    conexion = obtener_conexion()
+    conexion = get_conexion()
 
     cursor = conexion.cursor()
 
     cursor.execute(
         """
-        INSERT INTO facturas(data)
+        INSERT INTO tickets(data)
         VALUES(?)
         """,
         (json.dumps(data),)
@@ -49,19 +49,19 @@ def guardar_factura(data):
     conexion.close()
 
 ## OBTENER FACTURA DE LA BASE DE DATOS
-def obtener_facturas():
+def get_ticket():
 
-    conexion = obtener_conexion()
+    conexion = get_conexion()
 
     cursor = conexion.cursor()
 
     cursor.execute("""
         SELECT data
-        FROM facturas
+        FROM tickets
     """)
 
-    filas = cursor.fetchall()
+    rows = cursor.fetchall()
 
     conexion.close()
 
-    return filas    
+    return rows    

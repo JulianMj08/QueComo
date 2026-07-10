@@ -1,9 +1,9 @@
 from ollama import chat
 import json
 
-from prompts import PROMPT_EXTRAER_FACTURA
+from prompts import PROMPT_EXTRACT_TICKET
 
-def extraer_factura(ruta_imagen: str):
+def extract_ticket(route_img: str):
 
     response = chat(
         model="qwen2.5vl:3b",
@@ -11,8 +11,8 @@ def extraer_factura(ruta_imagen: str):
         messages=[
             {
                 "role": "user",
-                "content": PROMPT_EXTRAER_FACTURA,
-                "images": [ruta_imagen]
+                "content": PROMPT_EXTRACT_TICKET,
+                "images": [route_img]
             }
         ]
     )

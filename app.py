@@ -2,9 +2,9 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from routes import router
-from database import crear_base_datos   
+from database import create_db  
 
-crear_base_datos()
+create_db()
 
 app = FastAPI()
 

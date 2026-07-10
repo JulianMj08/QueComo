@@ -5,9 +5,9 @@ import json
 from fastapi.responses import FileResponse
 
 from config import UPLOADS_DIR
-from ia import extraer_factura
-from database import guardar_factura
-from database import obtener_facturas
+from ia import extract_ticket
+from database import save_ticket
+from database import get_ticket
 
 
 router = APIRouter()
@@ -15,45 +15,46 @@ router = APIRouter()
 
 @router.get("/")    
 def inicio():
-    return FileResponse("static/index.html") #En lugar de devolver un JSON, devuelve este archivo
+    return FileResponse("static/index.html") #En lugar de devolver un JSON, devuelve este archivo.
     
 
+# ENDPONT PARA ENVIAR TICKETS A LA BASE DE DATOS.
 @router.post("/facturas")
-async def recibir_factura(imagen: UploadFile = File(...)):
+async def upload_ticket(img: UploadFile = File(...)):
 
-    ruta = UPLOADS_DIR / imagen.filename
+    route = UPLOADS_DIR / img.filename
 
-    with open(ruta, "wb") as buffer:
-        shutil.copyfileobj(imagen.file, buffer)
+    with open(route, "wb") as buffer:
+        shutil.copyfileobj(img.file, buffer)
         
-        resultado = extraer_factura(str(ruta))
+        result = extract_ticket(str(route))
 
-        guardar_factura(resultado)
+        save_ticket(result)
 
     return {
         "mensaje": "Imagen procesada correctamente",
-        "resultado": resultado,
+        "resultado": result,
         
         # "archivo": imagen.filename Ya no necesitamos extraer la imagen(eso era solo para pruebas) ahora necesitamos solo extraer lo datos de la imagen
     }   
 
-#ENDPONT PARA OBTENER TODASS LAS FACTURAS QUE HA INGRESADO EL USUARIO
+#ENDPONT PARA OBTENER TODAS LAS FACTURAS QUE HA INGRESADO EL USUARIO.
 @router.get("/despensa")
-def obtener_despensa():
+def get_pantry():
 
-    filas = obtener_facturas()
+    rows = get_ticket()
 
     productos = []
 
-    for fila in filas:
+    for row in rows:
 
-        factura = json.loads(fila[0])
+        ticket = json.loads(row[0])
 
-        if "productos" in factura:
-            productos.extend(factura["productos"])
+        if "productos" in ticket:
+            productos.extend(ticket["productos"])
 
-        elif "nombre_del_producto_con_su_precio" in factura:
-            productos.extend(factura["nombre_del_producto_con_su_precio"]) # Solo agregamos esto por ahora, ya que esto hara que funcione porque lo que esta pasando es que la bd cuando se creo guardaba los productos asi, pero luego lo cambie a solo "productos"
+        elif "nombre_del_producto_con_su_precio" in ticket:
+            productos.extend(ticket["nombre_del_producto_con_su_precio"]) # Solo agregamos esto por ahora, ya que esto hara que funcione porque lo que esta pasando es que la bd cuando se creo guardaba los productos asi, pero luego lo cambie a solo "productos"
 
     return {
 
