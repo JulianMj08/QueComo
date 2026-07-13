@@ -1,25 +1,21 @@
-const name = document.getElementById("name");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 
-const btnRegister = document.getElementById("btnRegister");
+const btnLogin = document.getElementById("btnLogin");
 
 const state = document.getElementById("state");
 
-btnRegister.addEventListener("click", async () => {
+btnLogin.addEventListener("click", async () => {
 
     const user = {
-
-    name: name.value,
 
     email: email.value,
 
     password: password.value
-
 };
 
     try {
-        const response = await fetch("/registro", {
+        const response = await fetch("/login", {
 
         method: "POST",
 
@@ -48,15 +44,17 @@ btnRegister.addEventListener("click", async () => {
 
         }
 
-        catch(error){
+       catch(error){
 
         console.error(error);
 
-        state.textContent = "Error al crear el usuario.";
+        state.textContent = "Error al iniciar sesion.";
 
 
-            }
-});
+            } 
+    
+
+})
 
 
 

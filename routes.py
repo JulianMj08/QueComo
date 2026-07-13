@@ -9,7 +9,9 @@ from ia import extract_ticket
 from database import save_ticket
 from database import get_ticket
 from schemas import RegisterUser
+from schemas import LoginUser
 from database import create_user
+from database import login_user
 
 
 router = APIRouter()
@@ -85,5 +87,37 @@ def new_user_registered(user: RegisterUser):
 
 #ENDPONT PARA MOSTRAR LA PANTALLA DE CREACION DE USUARIO.
 @router.get("/registro")
-def show_page_register():
+def register_page():
     return FileResponse("static/register.html")    
+
+#ENDPONT PARA MOSTRAR LA PANTALLA DE LOGIN DE USUARIO.
+@router.get("/login")
+def login_page():
+
+    return FileResponse("static/login.html")    
+
+@router.post("/login")
+def login(user: LoginUser):
+
+    user = login_user(
+        user.email,
+        user.password
+    )
+
+    if user is None:
+
+        return {
+
+            "success": False,
+
+            "message": "Credenciales incorrectas"
+
+        }
+
+    return {
+
+        "success": True,
+
+        "message": "Bienvenido"
+
+    }    

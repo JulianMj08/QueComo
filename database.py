@@ -84,3 +84,25 @@ def create_user(name, email, password):
     conexion.commit()
 
     conexion.close()        
+
+def login_user(email, password):
+
+    conexion = get_conexion()
+
+    cursor = conexion.cursor()
+
+    cursor.execute(
+        """
+        SELECT *
+        FROM users
+        WHERE email = ?
+        AND password = ?
+        """,
+        (email, password)
+    )
+
+    user = cursor.fetchone()
+
+    conexion.close()
+
+    return user
