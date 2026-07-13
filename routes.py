@@ -64,9 +64,9 @@ def get_pantry():
 
     }   
     
-#ENDPONT PARA CREAR NUEVO USUARIA.  
+#ENDPONT PARA ENVIAR LA CREACION NUEVO USUARIO.  
 @router.post("/registro")
-def register(user: RegisterUser):
+def new_user_registered(user: RegisterUser):
 
     create_user(
         user.name,
@@ -77,3 +77,8 @@ def register(user: RegisterUser):
     return {
         "mensaje": "Usuario creado correctamente"
     }
+
+#ENDPONT PARA MOSTRAR LA PANTALLA DE CREACION DE USUARIO.
+@router.get("/registro")
+def show_page_register():
+    return FileResponse("static/register.html")    
