@@ -16,10 +16,15 @@ router = APIRouter()
 
 
 @router.get("/")    
-def inicio():
-    return FileResponse("static/index.html") #En lugar de devolver un JSON, devuelve este archivo.
-    
+def index_page():
+    return FileResponse("static/register.html") #En lugar de devolver un JSON, devuelve este archivo.
 
+#ENDPOINT PARA IR A LA PAGINA PRINCIPAL DE LA APP (SUBIR FACTURA)
+@router.get("/app")
+def application():
+
+    return FileResponse("static/index.html")    
+    
 # ENDPONT PARA ENVIAR TICKETS A LA BASE DE DATOS.
 @router.post("/facturas")
 async def upload_ticket(img: UploadFile = File(...)):
@@ -75,7 +80,7 @@ def new_user_registered(user: RegisterUser):
     )
 
     return {
-        "mensaje": "Usuario creado correctamente"
+        "message": "Usuario creado correctamente"
     }
 
 #ENDPONT PARA MOSTRAR LA PANTALLA DE CREACION DE USUARIO.

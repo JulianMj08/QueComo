@@ -39,6 +39,13 @@ btnRegister.addEventListener("click", async () => {
 
         state.textContent = data.message;
 
+        setTimeout(() => {
+
+            console.log("Redirigiendo...");
+    window.location.href = "/app";
+
+    }, 3000);
+
         }
 
         catch(error){
