@@ -115,9 +115,11 @@ def login(user: LoginUser):
             "message": "Credenciales incorrectas"
 
         }
+
     access_token = create_access_token({
         "sub": user["email"]    
 })
+
 
     return {
 
@@ -125,6 +127,6 @@ def login(user: LoginUser):
 
         "message": "Bienvenido",
 
-        "token": access_token
+        "token": access_token,
 
     }    

@@ -40,6 +40,7 @@ btnLogin.addEventListener("click", async () => {
         console.log("Redirigiendo...");
         console.log(data.token)
         window.location.href = "/app";
+        localStorage.setItem("token", data.token);
 
     }, 3000);
 
