@@ -38,6 +38,7 @@ btnLogin.addEventListener("click", async () => {
         setTimeout(() => {
 
         console.log("Redirigiendo...");
+        console.log(data.token)
         window.location.href = "/app";
 
     }, 3000);

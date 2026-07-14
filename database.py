@@ -6,7 +6,11 @@ import json
 DB_NAME = "QComo.db"
 
 def get_conexion():
-    return sqlite3.connect(DB_NAME) #Crea la conexion
+    connection = sqlite3.connect(DB_NAME) #Crea la conexion
+
+    connection.row_factory = sqlite3.Row # Agregando esta linea odas las consultas del proyecto empezarán a devolver objetos (tambien diccionarios) con nombres de columnas. y podremos acceder a las propiedades de user por medio de por ejemplo user["email"] y no en forma de tupla accediendo con el user[2] porque el [] con el tiempo olvidaremos el numero
+
+    return connection
 
 
 def create_db():

@@ -12,6 +12,7 @@ from schemas import RegisterUser
 from schemas import LoginUser
 from database import create_user
 from database import login_user
+from security import create_access_token
 
 
 router = APIRouter()
@@ -104,6 +105,7 @@ def login(user: LoginUser):
         user.password
     )
 
+    
     if user is None:
 
         return {
@@ -113,11 +115,16 @@ def login(user: LoginUser):
             "message": "Credenciales incorrectas"
 
         }
+    access_token = create_access_token({
+        "sub": user["email"]    
+})
 
     return {
 
         "success": True,
 
-        "message": "Bienvenido"
+        "message": "Bienvenido",
+
+        "token": access_token
 
     }    
