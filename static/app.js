@@ -3,9 +3,17 @@ const despensa = document.getElementById("despensa");
 
 const btnDespensa = document.getElementById("btnDespensa");
 
+const token = localStorage.getItem("token");
+
 btnDespensa.addEventListener("click", async () => {
 
-    const respuesta = await fetch("/despensa");
+    const respuesta = await fetch("/despensa", {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+});
+    console.log("este es el token ", token);
+    
 
     const datos = await respuesta.json();
 
@@ -68,7 +76,7 @@ boton.addEventListener("click", async () => {
 
             method: "POST",
 
-            body: formData
+            body: formData,
 
         });
 

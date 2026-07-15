@@ -110,3 +110,24 @@ def login_user(email, password):
     conexion.close()
 
     return user
+
+def get_user_by_email(email):
+
+    conexion = get_conexion()
+
+    cursor = conexion.cursor()
+
+    cursor.execute(
+        """
+        SELECT *
+        FROM users
+        WHERE email = ?
+        """,
+        (email,)
+    )
+
+    user = cursor.fetchone()
+
+    conexion.close()
+
+    return user

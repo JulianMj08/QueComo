@@ -3,6 +3,8 @@ from pathlib import Path
 import shutil
 import json
 from fastapi.responses import FileResponse
+from fastapi import Depends, HTTPException, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from config import UPLOADS_DIR
 from ia import extract_ticket
@@ -13,6 +15,8 @@ from schemas import LoginUser
 from database import create_user
 from database import login_user
 from security import create_access_token
+from security import get_current_user
+
 
 
 router = APIRouter()
@@ -50,7 +54,7 @@ async def upload_ticket(img: UploadFile = File(...)):
 
 #ENDPONT PARA OBTENER TODAS LAS FACTURAS QUE HA INGRESADO EL USUARIO.
 @router.get("/despensa")
-def get_pantry():
+def get_pantry(current_user = Depends(get_current_user)):
 
     rows = get_ticket()
 
