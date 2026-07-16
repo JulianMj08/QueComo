@@ -3,7 +3,7 @@ import json
 
 ## CREACION Y CONEXION FACTURA EN LA BASE DE DATOS
 
-DB_NAME = "QComo.db"
+DB_NAME = "QComo2.db"
 
 def get_conexion():
     connection = sqlite3.connect(DB_NAME) #Crea la conexion
@@ -19,15 +19,41 @@ def create_db():
 
     cursor = conexion.cursor() #Ejecuta la conexion
 
+    #CREAMOS LA TABLA USERS
     cursor.execute("""
+
+    CREATE TABLE IF NOT EXISTS users (
+    
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    name TEXT NOT NULL,
+
+    email TEXT NOT NULL UNIQUE,
+
+    password TEXT NOT NULL
+
+    ) 
+
+    """)
+
+    #CREAMOS LA TABLA TICKETS
+    cursor.execute("""
+
     CREATE TABLE IF NOT EXISTS tickets(
 
     id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-    data TEXT
+    user_id INTEGER NOT NULL,
 
-)
-    """)
+    data TEXT, 
+
+    FOREIGN KEY(user_id)
+        REFERENCES users(id)
+    )
+
+    """
+    )
+
     conexion.commit()   
 
     conexion.close()
