@@ -66,7 +66,7 @@ boton.addEventListener("click", async () => {
 
     const formData = new FormData();
 
-    formData.append("imagen", archivo);
+    formData.append("img", archivo); // dice img porque es asi como lo cree en el endpoint en el backend.
 
     estado.textContent = "Procesando factura...";
 
@@ -76,11 +76,19 @@ boton.addEventListener("click", async () => {
 
             method: "POST",
 
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+
             body: formData,
 
         });
 
         const datos = await respuesta.json(); // Creamos la salida en formato json
+
+        console.log(respuesta.status);
+        console.log(datos);
+        
 
         
         // Creamos las constantes de cada dato que se mostrara por pantalla

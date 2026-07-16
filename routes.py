@@ -34,7 +34,7 @@ def application():
     
 # ENDPONT PARA ENVIAR TICKETS A LA BASE DE DATOS.
 @router.post("/facturas")
-async def upload_ticket(img: UploadFile = File(...)):
+async def upload_ticket(img: UploadFile = File(...), current_user = Depends(get_current_user) ):
 
     route = UPLOADS_DIR / img.filename
 
@@ -43,7 +43,7 @@ async def upload_ticket(img: UploadFile = File(...)):
         
         result = extract_ticket(str(route))
 
-        save_ticket(result)
+        save_ticket(current_user["id"], result)
 
     return {
         "mensaje": "Imagen procesada correctamente",

@@ -10,6 +10,8 @@ def get_conexion():
 
     connection.row_factory = sqlite3.Row # Agregando esta linea odas las consultas del proyecto empezarán a devolver objetos (tambien diccionarios) con nombres de columnas. y podremos acceder a las propiedades de user por medio de por ejemplo user["email"] y no en forma de tupla accediendo con el user[2] porque el [] con el tiempo olvidaremos el numero
 
+    connection.execute("PRAGMA foreign_keys = ON")
+
     return connection
 
 
@@ -60,18 +62,22 @@ def create_db():
 
 ## GUARDAR FACTURA EN LA BASE DE DATOS
 
-def save_ticket(data):
+def save_ticket(user_id, data):
 
     conexion = get_conexion()
 
     cursor = conexion.cursor()
 
     cursor.execute(
+        
         """
-        INSERT INTO tickets(data)
-        VALUES(?)
+        INSERT INTO tickets(user_id, data)
+        VALUES(?, ?)
         """,
-        (json.dumps(data),)
+        (
+            user_id,
+            json.dumps(data)
+        )
     )
 
     conexion.commit()
