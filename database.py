@@ -85,7 +85,7 @@ def save_ticket(user_id, data):
     conexion.close()
 
 ## OBTENER FACTURA DE LA BASE DE DATOS
-def get_ticket():
+def get_ticket(user_id):
 
     conexion = get_conexion()
 
@@ -94,7 +94,9 @@ def get_ticket():
     cursor.execute("""
         SELECT data
         FROM tickets
-    """)
+        WHERE user_id = ?
+    """,  (user_id,)
+    )
 
     rows = cursor.fetchall()
 

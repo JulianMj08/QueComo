@@ -56,7 +56,7 @@ async def upload_ticket(img: UploadFile = File(...), current_user = Depends(get_
 @router.get("/despensa")
 def get_pantry(current_user = Depends(get_current_user)):
 
-    rows = get_ticket()
+    rows = get_ticket(current_user["id"])
 
     productos = []
 
@@ -109,7 +109,6 @@ def login(user: LoginUser):
         user.password
     )
 
-    
     if user is None:
 
         return {
@@ -123,7 +122,6 @@ def login(user: LoginUser):
     access_token = create_access_token({
         "sub": user["email"]    
 })
-
 
     return {
 
