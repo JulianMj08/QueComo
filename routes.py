@@ -24,13 +24,14 @@ router = APIRouter()
 
 @router.get("/")    
 def index_page():
-    return FileResponse("static/register.html") #En lugar de devolver un JSON, devuelve este archivo.
+    return FileResponse("static/index.html")
+    ##return FileResponse("static/register.html") #En lugar de devolver un JSON, devuelve este archivo.
 
 #ENDPOINT PARA IR A LA PAGINA PRINCIPAL DE LA APP (SUBIR FACTURA)
 @router.get("/app")
 def application():
 
-    return FileResponse("static/index.html")    
+    return FileResponse("static/my_pantry.html")    
     
 # ENDPONT PARA ENVIAR TICKETS A LA BASE DE DATOS.
 @router.post("/facturas")

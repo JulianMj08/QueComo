@@ -1,83 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>QueComo</title>
-
-    <link rel="stylesheet" href="/static/style.css">
-
+    <title>Document</title>
 </head>
-
 <body>
+    <h1>Bienvenidos a tu web app QueComo</h1>
 
-    <div class="container">
+    <h2>En ella podras gestionar la cocina de tu hogar de la mejor manera</h2>
 
-        <div class="card">
-
-            <h1>🧾 QueComo</h1>
-
-            <p>Tu despensa inteligente con IA</p>
-
-            <hr>
-
-            <h3>📷 Seleccionar factura</h3>
-
-            <input
-                type="file"
-                id="factura"
-                accept="image/*">
-
-         <button id="btnAnalizar">
-            Analizar factura
-        </button>
-
-        <p id="estado"></p>       
-
-        </div>
-
-    </div>
-
-    <button id="btnDespensa">
-
-    📦 Ver despensa
-
-</button>
-
-    <hr>
-
-<div id="resultado" style="display: none;">
-
-    <h2>✔ Factura procesada</h2>
-
-    <p><strong>Empresa:</strong> <span id="empresa"></span></p>
-
-    <p><strong>Fecha:</strong> <span id="fecha"></span></p>
-
-    <p><strong>Total:</strong> <span id="total"></span></p>
-
-    <h3>Productos</h3>
-
-    <div id="productos"></div>
-
-</div>
-
-<hr>
-
-<h2>📦 Mi despensa</h2>
-
-<div id="despensa">
-
-    <p>Aún no hay productos.</p>
-
-</div>
-
-    <script src="/static/app.js"></script>
-
+    <button><a href="/registro">Crear cuenta</a></button>
+    <button><a href="/login">Iniciar sesion</a></button>
 </body>
-
 </html>
