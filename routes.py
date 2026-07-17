@@ -132,3 +132,19 @@ def login(user: LoginUser):
         "token": access_token,
 
     }    
+
+#ENDPONT PARA MOSTRAR LA PANTALLA DE PERFIL DE USUARIO.
+@router.get("/perfil")
+def profile_page():
+    return FileResponse("static/profile.html")
+
+
+
+@router.get("/api/perfil")
+def profile(current_user = Depends(get_current_user)):
+
+    return {
+        "id": current_user["id"],
+        "name": current_user["name"],
+        "email": current_user["email"]
+    }  

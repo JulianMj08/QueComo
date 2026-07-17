@@ -165,3 +165,4 @@ def get_user_by_email(email):
     conexion.close()
 
     return user
+
