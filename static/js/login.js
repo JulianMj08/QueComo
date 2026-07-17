@@ -8,9 +8,7 @@ const state = document.getElementById("state");
 btnLogin.addEventListener("click", async () => {
 
     const user = {
-
     email: email.value,
-
     password: password.value
 };
 
@@ -18,13 +16,11 @@ btnLogin.addEventListener("click", async () => {
         const response = await fetch("/login", {
 
         method: "POST",
-
         headers: {
 
             "Content-Type": "application/json"
 
         },
-
         body: JSON.stringify(user)
 
     });
@@ -42,17 +38,13 @@ btnLogin.addEventListener("click", async () => {
         window.location.href = "/app";
         localStorage.setItem("token", data.token);
 
-    }, 3000);
+    }, 2000);
 
         }
 
        catch(error){
-
         console.error(error);
-
         state.textContent = "Error al iniciar sesion.";
-
-
             } 
     
 

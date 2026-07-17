@@ -86,8 +86,15 @@ def new_user_registered(user: RegisterUser):
         user.password
     )
 
+    access_token = create_access_token({
+        "sub": user.email    
+})
     return {
-        "message": "Usuario creado correctamente"
+        "message": "Usuario creado correctamente",
+
+         "success": True,
+
+        "token": access_token, #El backend le va a devolver el token a register.js
     }
 
 #ENDPONT PARA MOSTRAR LA PANTALLA DE CREACION DE USUARIO.

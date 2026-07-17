@@ -9,28 +9,21 @@ const state = document.getElementById("state");
 btnRegister.addEventListener("click", async () => {
 
     const user = {
-
     name: name.value,
-
     email: email.value,
-
     password: password.value
-
 };
 
     try {
         const response = await fetch("/registro", {
 
         method: "POST",
-
         headers: {
 
             "Content-Type": "application/json"
 
         },
-
         body: JSON.stringify(user)
-
     });
 
         const data = await response.json();
@@ -42,19 +35,15 @@ btnRegister.addEventListener("click", async () => {
         setTimeout(() => {
 
         console.log("Redirigiendo...");
+        localStorage.setItem("token", data.token);
         window.location.href = "/app";
 
-    }, 3000);
+    }, 2000);
 
         }
-
         catch(error){
-
         console.error(error);
-
         state.textContent = "Error al crear el usuario.";
-
-
             }
 });
 
