@@ -7,13 +7,13 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from config import UPLOADS_DIR
-from ia import extract_ticket
-from database import save_ticket
-from database import get_ticket
-from schemas import RegisterUser
-from schemas import LoginUser
-from database import create_user
-from database import login_user
+from ai.ia import extract_ticket
+from database.database import save_ticket
+from database.database import get_ticket
+from models.schemas import RegisterUser
+from models.schemas import LoginUser
+from database.database import create_user
+from database.database import login_user
 from security import create_access_token
 from security import get_current_user
 
@@ -30,7 +30,6 @@ def index_page():
 #ENDPOINT PARA IR A LA PAGINA PRINCIPAL DE LA APP (SUBIR FACTURA)
 @router.get("/app")
 def application():
-
     return FileResponse("static/my_pantry.html")    
     
 # ENDPONT PARA ENVIAR TICKETS A LA BASE DE DATOS.
@@ -140,7 +139,7 @@ def profile_page():
     return FileResponse("static/profile.html")
 
 
-
+#ENDPONT PARA AUTORIZAR Y DEVOLVER DATOS DEL USUARIO A FETCH /perfil.
 @router.get("/api/perfil")
 def profile(current_user = Depends(get_current_user)):
 

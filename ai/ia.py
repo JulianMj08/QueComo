@@ -1,7 +1,7 @@
 from ollama import chat
 import json
 
-from prompts import PROMPT_EXTRACT_TICKET
+from ai.prompts import PROMPT_EXTRACT_TICKET
 
 def extract_ticket(route_img: str):
 

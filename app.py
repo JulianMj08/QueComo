@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from routes import router
-from database import create_db  
+from database.database import create_db
 
 create_db()
 
