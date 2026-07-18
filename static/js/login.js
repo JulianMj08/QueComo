@@ -1,54 +1,54 @@
-const email = document.getElementById("email");
-const password = document.getElementById("password");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
 
-const btnLogin = document.getElementById("btnLogin");
+    const btnLogin = document.getElementById("btnLogin");
 
-const state = document.getElementById("state");
+    const state = document.getElementById("state");
 
-btnLogin.addEventListener("click", async () => {
+    btnLogin.addEventListener("click", async () => {
 
-    const user = {
-    email: email.value,
-    password: password.value
-};
+        const user = {
+        email: email.value,
+        password: password.value
+    };
 
-    try {
-        const response = await fetch("/login", {
+        try {
+            const response = await fetch("/login", {
 
-        method: "POST",
-        headers: {
+            method: "POST",
+            headers: {
 
-            "Content-Type": "application/json"
+                "Content-Type": "application/json"
 
-        },
-        body: JSON.stringify(user)
+            },
+            body: JSON.stringify(user)
 
-    });
+        });
 
-        const data = await response.json();
+            const data = await response.json();
 
-        console.log(data);
+            console.log(data);
 
-        state.textContent = data.message;
+            // state.textContent = data.message;
+            
+        
+            setTimeout(() => {
 
-        setTimeout(() => {
+            console.log("Redirigiendo...");
+            console.log(data.token)
+            localStorage.setItem("token", data.token);
+            window.location.href = "/app";
+        }, 2000);
 
-        console.log("Redirigiendo...");
-        console.log(data.token)
-        window.location.href = "/app";
-        localStorage.setItem("token", data.token);
+            }
 
-    }, 2000);
+        catch(error){
+            console.error(error);
+            state.textContent = "Error al iniciar sesion.";
+                } 
+        
 
-        }
-
-       catch(error){
-        console.error(error);
-        state.textContent = "Error al iniciar sesion.";
-            } 
-    
-
-})
+    })
 
 
 
