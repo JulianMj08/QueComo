@@ -7,6 +7,14 @@ if (!token) {
     window.location.href = "/login"; 
 }
 
+const logout = document.getElementById("logout");
+
+logout.addEventListener("click", () => {
+    
+    localStorage.removeItem("token");
+    window.location.href = "/";
+})
+
 btnDespensa.addEventListener("click", async () => {
 
     const res = await fetch("/despensa", { // Este fecth trae los datos de los productos que hay en la dispensa.
